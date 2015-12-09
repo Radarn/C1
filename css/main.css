@@ -1,0 +1,36 @@
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+
+li {
+	padding: 3px;
+}
+
+.AddTask,
+.FinishedTasks {
+	width: 25%;
+}
+
+.ToDoTasks {
+	width: 50%;
+	text-align: center;
+}
+
+.ToDoTasks h3 {
+	position: relative;
+	right: 32px;
+}
+
+.ToDoTasks .btn-group {
+	position: relative;
+	right: 25px;
+}
+
+.FinishAndRemove {
+	position: relative;
+	left: 3px;
+}
+
