@@ -7,46 +7,60 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-	<main class="container">
-		<section id="AddTask" class="AddTask pull-left">
-			<h3>Task Manager</h3>
-			<input type="text" placeholder="Type here">
-			<button class="btn btn-success">Add Task</button>
-		</section>
-		<section id="ToDoTasks" class="ToDoTasks pull-left">
-			<ul>
-				<h3>Tasks todo</h3>
-				<li>
-					<input type="text" value="Buy Dinner">
-					<input type="checkbox"></input>				
-				</li>
-				<li>
-					<input type="text" value="Be Nice">
-					<input type="checkbox"></input>				
-				</li>
-				<li>
-					<input type="text" value="Go Out">
-					<input type="checkbox"></input>
-				</li>
-			</ul>
-			<div class="btn-group">
-				<button class="btn btn-primary edit">Edit</button>
-				<button class="btn btn-danger remove">Remove</button>
+	<main class="container" class="row">
+		<section id="AddTask" class="AddTask col-sm-4">
+			<div class="panel panel-warning">
+				<div class="panel-heading">Task Manager</div>
+				<div class="panel-body">
+					<ul>
+						<li><input type="text" placeholder="Type here"></li>
+					</ul>
+					<button class="btn btn-success">Add Task</button>
+				</div>
 			</div>
 		</section>
-		<section id="FinishedTasks" class="FinishedTasks pull-left">
-			<ul>
-				<h3>Finished Tasks</h3>
-				<li>
-					<input type="text" value="Meet a Friend">
-					<input type="checkbox"></input>
-				</li>
-				<li>
-					<input type="text" value="Eat Lunch">
-					<input type="checkbox"></input>
-				</li>
-			</ul>
-				<button class="btn btn-success FinishAndRemove">Finish and Remove</button>
+		<section id="ToDoTasks" class="ToDoTasks col-sm-4">
+			<div class="panel panel-info">
+				<div class="panel-heading">To Do Tasks</div>
+				<div class="panel-body">
+					<ul>
+						<li>
+							<input type="text" value="Buy Dinner">
+							<input type="checkbox"></input>				
+						</li>
+						<li>
+							<input type="text" value="Be Nice">
+							<input type="checkbox"></input>				
+						</li>
+						<li>
+							<input type="text" value="Go Out">
+							<input type="checkbox"></input>
+						</li>
+					</ul>
+					<div class="btn-group">
+						<button class="btn btn-primary edit">Edit</button>
+						<button class="btn btn-danger remove">Remove</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="FinishedTasks" class="FinishedTasks col-sm-4">
+			<div class="panel panel-success">
+				<div class="panel-heading">Finished Tasks</div>
+				<div class="panel-body">
+					<ul>
+						<li>
+							<input type="text" value="Meet a Friend">
+							<input type="checkbox"></input>
+						</li>
+						<li>
+							<input type="text" value="Eat Lunch">
+							<input type="checkbox"></input>
+						</li>
+					</ul>
+					<button class="btn btn-success FinishAndRemove">Finish and Remove</button>
+				</div>
+			</div>
 		</section>
 	</main>
 </body>
