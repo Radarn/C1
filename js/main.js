@@ -3,7 +3,7 @@ var buttons = document.querySelectorAll("button");
 var taskName = document.querySelector(".AddTask input");
 var totalItems = 0;
 var isBoxChecked;
-var todoList = document.querySelector(".ToDoTasks ul")
+var todoList = document.querySelector(".ToDoTasks ul");
 var completedList = document.querySelector(".FinishedTasks ul");
 
 
@@ -20,9 +20,11 @@ function taskManager() {
 	} else if(this.id === "editButton" && isBoxChecked === true) {
 		editTask();
 	} else if(this.id === "doneButton" && isBoxChecked === true) {
-		finishedTasks();
+		doneTasks();
 	} else if(this.id === "removeButton" && isBoxChecked === true) {
 		removeTask();
+	} else if(this.id === "finishButton" && isBoxChecked === true) {
+		finishTask();
 	}
 
 }
@@ -35,13 +37,14 @@ function checkboxStatus() {
 
 	if (this.checked) {
 		itemText.style.textDecoration = "line-through";
-		editText.style.display = "";
-		return isBoxChecked = true;
+		itemText.style.color = "#F5D76E";
+		return isBoxChecked = true
 
 	} else {
 		itemText.style.textDecoration = "none";
 		editText.style.display = "none";
-		return isBoxChecked = false;
+		itemText.style.color = "#333";
+		return isBoxChecked = false
 	}
 }
 		
@@ -58,7 +61,6 @@ function addTask() {
 	checkbox.type = "checkbox";
 
 	checkbox.addEventListener("click", checkboxStatus);
-	checkbox.addEventListener("click", editTask);
 
 	checkbox.id = "cb_" + totalItems;
 	label.id = "item_" + totalItems;
@@ -68,7 +70,7 @@ function addTask() {
 
     label.innerHTML = taskName.value;
     li.appendChild(label);
-   	li.appendChild(textField);
+	li.appendChild(textField);
     li.appendChild(checkbox);
     todoList.appendChild(li);
 
@@ -76,23 +78,51 @@ function addTask() {
 }
 
 function removeTask() {
-	alert("Remove");
-
+	var listItems = document.querySelectorAll('input');
+	for (var i = 0; i < listItems.length; i++ ) {
+       if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+               todoList.removeChild((listItems[i].parentElement));
+           }
+       }     
+   }
 }
 
 function editTask() {
-	alert("edit");
-	/*var editLabel = todoList.querySelector("label");
-	var editInput = todoList.querySelector("input[type=text]")*/
-
+	var labelText = document.querySelectorAll(".todoList label");
+	var listItems = document.querySelectorAll('input');
+	var editText = document.querySelectorAll("input[type=text]");
+	for (var i = 0; i < listItems.length; i++ ) {
+       if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+   
+               for (var a = 0; a < editText.length; a++) {
+					editText[a].style.display = "";	
+               }
+           }
+       }     
+   }
 }
 
-
-
-function finishedTasks() {
-	alert("Done");	
-	completedList.appendChild(todoList);
-
+function finishTask() {
+	var listItems = document.querySelectorAll('input');
+    for (var i = 0; i < listItems.length; i++ ) {
+       if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+               completedList.removeChild((listItems[i].parentElement));
+           }
+       }     
+   }
 }
 
-
+ 
+function doneTasks() {
+  var listItems = document.querySelectorAll('input');
+   for (var i = 0; i < listItems.length; i++ ) {
+       if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+               completedList.appendChild((listItems[i].parentElement));
+           }
+       }     
+   }
+}
