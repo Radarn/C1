@@ -2,6 +2,9 @@
 var buttons = document.querySelectorAll("button");
 var taskName = document.querySelector(".AddTask input");
 var totalItems = 0;
+var isBoxChecked;
+var todoList = document.querySelector(".ToDoTasks ul")
+var completedList = document.querySelector(".FinishedTasks ul");
 
 
 for (var i = 0; i < buttons.length; i++) {
@@ -12,13 +15,13 @@ for (var i = 0; i < buttons.length; i++) {
 function taskManager() {
 	if(this.id === "addButton") {
 
-		addTask(toDoListItem = document.querySelector(".ToDoTasks ul"));
+		addTask();
 
-	} else if(this.id === "editButton") {
+	} else if(this.id === "editButton" && isBoxChecked === true) {
 		editTask();
-	} else if(this.id === "doneButton") {
-		doneTask();
-	} else if(this.id === "removeButton") {
+	} else if(this.id === "doneButton" && isBoxChecked === true) {
+		finishedTasks();
+	} else if(this.id === "removeButton" && isBoxChecked === true) {
 		removeTask();
 	}
 
@@ -27,19 +30,23 @@ function taskManager() {
 function checkboxStatus() {
 	var itemNumber = this.id.replace("cb_", "");
 	var itemText = document.getElementById("item_" + itemNumber);
+	var editText = document.getElementById("edit_" + itemNumber);
+
 
 	if (this.checked) {
 		itemText.style.textDecoration = "line-through";
+		editText.style.display = "";
+		return isBoxChecked = true;
+
 	} else {
 		itemText.style.textDecoration = "none";
+		editText.style.display = "none";
+		return isBoxChecked = false;
 	}
-	
-
-	
-
 }
+		
 
-function addTask(list) {
+function addTask() {
 	totalItems++;
 	
 	var li = document.createElement("li");
@@ -49,31 +56,43 @@ function addTask(list) {
 
 	textField.type = "text";
 	checkbox.type = "checkbox";
+
 	checkbox.addEventListener("click", checkboxStatus);
+	checkbox.addEventListener("click", editTask);
 
 	checkbox.id = "cb_" + totalItems;
 	label.id = "item_" + totalItems;
-	textField.id = "cb _" + totalItems;
+	textField.id = "edit_" + totalItems;
+
+	textField.style.display = "none";
 
     label.innerHTML = taskName.value;
-    li.appendChild(label)
+    li.appendChild(label);
    	li.appendChild(textField);
     li.appendChild(checkbox);
-    toDoListItem.appendChild(li);
+    todoList.appendChild(li);
 
-    return toDoListItem;
+    return todoList;
 }
 
 function removeTask() {
+	alert("Remove");
 
 }
 
 function editTask() {
+	alert("edit");
+	/*var editLabel = todoList.querySelector("label");
+	var editInput = todoList.querySelector("input[type=text]")*/
 
 }
 
-function doneTask() {
-	alert("hej");
+
+
+function finishedTasks() {
+	alert("Done");	
+	completedList.appendChild(todoList);
+
 }
 
 
