@@ -18,7 +18,7 @@ function taskManager() {
 		addTask();
 
 	} else if(this.id === "editButton" && isBoxChecked === true) {
-		editTask();
+		editMode();
 	} else if(this.id === "doneButton" && isBoxChecked === true) {
 		doneTasks();
 	} else if(this.id === "removeButton" && isBoxChecked === true) {
@@ -35,15 +35,12 @@ function checkboxStatus() {
 	var editText = document.getElementById("edit_" + itemNumber);
 
 
-	if (this.checked) {
-		itemText.style.textDecoration = "line-through";
-		itemText.style.color = "#F5D76E";
+	if (this.checked === true) {
+		itemText.className = "checked";
 		return isBoxChecked = true
 
-	} else {
-		itemText.style.textDecoration = "none";
-		editText.style.display = "none";
-		itemText.style.color = "#333";
+	} else if(this.checked === false) {
+		itemText.className = "unchecked";
 		return isBoxChecked = false
 	}
 }
@@ -73,7 +70,6 @@ function addTask() {
 	li.appendChild(textField);
     li.appendChild(checkbox);
     todoList.appendChild(li);
-
     return todoList;
 }
 
@@ -88,21 +84,28 @@ function removeTask() {
    }
 }
 
-function editTask() {
-	var labelText = document.querySelectorAll(".todoList label");
-	var listItems = document.querySelectorAll('input');
-	var editText = document.querySelectorAll("input[type=text]");
-	for (var i = 0; i < listItems.length; i++ ) {
-       if (listItems[i].type === 'checkbox') {
-           if (listItems[i].checked === true) {
-   
-               for (var a = 0; a < editText.length; a++) {
-					editText[a].style.display = "";	
-               }
-           }
-       }     
-   }
-}
+function editMode() {
+
+	// Fundersam på om for loop är det rätta sättet här....
+	// Måste på något sätt lösa så att inte alla inputs öppnas och stängs..
+	// På något sätt skapa en identifierare för varje text block... Hmmm
+	var listItems = document.querySelectorAll('.ToDoTasks input[type=text]');
+	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
+	
+	for (var i = 0; i < listItems.length; i++){
+		if (listItems[i].style.display === "none") {
+			listItems[i].style.display = ""
+		} else {
+			listItems[i].style.display = "none";
+		}}
+	for (var a = 0; a < listItemCheckbox.length; a++) {			
+		if (listItemCheckbox[a].checked === true) {			
+			listItemCheckbox[a].checked = false;
+			} 
+		}
+	}
+	
+
 
 function finishTask() {
 	var listItems = document.querySelectorAll('input');
@@ -122,6 +125,7 @@ function doneTasks() {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
                completedList.appendChild((listItems[i].parentElement));
+               listItems[i].checked = false;
            }
        }     
    }

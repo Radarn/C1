@@ -20,7 +20,28 @@ li {
 }
 
 label {
-	display: block;
+	display: inline-block;
+	font-size: 1.2em;
+}
+
+.ToDoTasks input[type="checkbox"] {
+	font-size: 1.2em;
+}
+
+.ToDoTasks input[type="text"] {
+	display: inline-block;
+}
+
+.checked {
+		font-style: italic;
+		color: slategrey;
+		font-size: 1.35em;
+}
+
+.unchecked {
+		color: #333;
+		text-decoration: none;
+		font-style: normal;
 }
 
 
