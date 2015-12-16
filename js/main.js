@@ -6,7 +6,7 @@ var isBoxChecked;
 var todoList = document.querySelector(".ToDoTasks ul");
 var completedList = document.querySelector(".FinishedTasks ul");
 var editButton = document.getElementById("editButton");
-/*isEditButtonPressed = false;*/
+
 
 
 for (var i = 0; i < buttons.length; i++) {
@@ -19,30 +19,29 @@ function taskManager() {
 
 		addTask();
 
-	}  else if(this.id === "editButton" && isBoxChecked === true) {
+	}  else if(this.id === "editButton") {
 		editMode();
-	 } else if(this.id === "doneButton" && isBoxChecked === true) {
+	 } else if(this.id === "doneButton") {
 		doneTasks();
-	} else if(this.id === "removeButton" && isBoxChecked === true) {
+	} else if(this.id === "removeButton") {
 		removeTask();
-	} else if(this.id === "finishButton" && isBoxChecked === true) {
+	} else if(this.id === "finishButton") {
 		finishTask();
 	}
 
 }
 
 function checkboxStatus() {
-	var itemNumber = this.id.replace("cb_", "");
-	var itemText = document.getElementById("item_" + itemNumber);
-	var editText = document.getElementById("edit_" + itemNumber);
+	var id = this.id.replace("cb_", "");
+	var itemText = document.getElementById("item_" + id);
+	var editText = document.getElementById("edit_" + id);
 
 	if (this.checked === true) {
-		itemText.className = "checked";
-		return isBoxChecked = true
+		itemText.className = "checked";	
 
 	} else if(this.checked === false) {
 		itemText.className = "unchecked";
-		return isBoxChecked = false
+		
 	}
 }
 		
@@ -87,26 +86,28 @@ function removeTask() {
 }
 
 function editMode() {
-	
 	var listItems = document.querySelectorAll('input');
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
              var x = listItems[i].parentElement.getElementsByClassName('checked');
-			 
 			 var itemNumber = x[0].id.replace("item_", "");
+			 
            }
        }     
    }
-	
-	alert(itemNumber)
-	
+
 	var listItems = document.getElementById('edit_' + itemNumber);
 	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
+	var label = document.getElementById("item_" + itemNumber);
+
+
 	
 	if (listItems.style.display === "none") {
+		listItems.value = label.innerHTML;
 		listItems.style.display = "";
 	} else if (listItems.style.display === "") {
+		label.innerHTML = listItems.value;
 		listItems.style.display = "none";
 	}
 
