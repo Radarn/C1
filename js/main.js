@@ -5,6 +5,8 @@ var totalItems = 0;
 var isBoxChecked;
 var todoList = document.querySelector(".ToDoTasks ul");
 var completedList = document.querySelector(".FinishedTasks ul");
+var editButton = document.getElementById("editButton");
+/*isEditButtonPressed = false;*/
 
 
 for (var i = 0; i < buttons.length; i++) {
@@ -17,9 +19,10 @@ function taskManager() {
 
 		addTask();
 
-	} else if(this.id === "editButton" && isBoxChecked === true) {
-		editMode();
-	} else if(this.id === "doneButton" && isBoxChecked === true) {
+	} /*else if(this.id === "editButton" && isBoxChecked === true) {
+		isEditButtonPressed = true;
+		editMode()
+	 }*/else if(this.id === "doneButton" && isBoxChecked === true) {
 		doneTasks();
 	} else if(this.id === "removeButton" && isBoxChecked === true) {
 		removeTask();
@@ -34,9 +37,9 @@ function checkboxStatus() {
 	var itemText = document.getElementById("item_" + itemNumber);
 	var editText = document.getElementById("edit_" + itemNumber);
 
-
 	if (this.checked === true) {
 		itemText.className = "checked";
+		editButton.addEventListener("click", editMode(itemNumber));
 		return isBoxChecked = true
 
 	} else if(this.checked === false) {
@@ -70,6 +73,7 @@ function addTask() {
 	li.appendChild(textField);
     li.appendChild(checkbox);
     todoList.appendChild(li);
+
     return todoList;
 }
 
@@ -84,26 +88,35 @@ function removeTask() {
    }
 }
 
-function editMode() {
-
+function editMode(itemNumber) {
+	
+	alert(itemNumber)
 	// Fundersam på om for loop är det rätta sättet här....
 	// Måste på något sätt lösa så att inte alla inputs öppnas och stängs..
 	// På något sätt skapa en identifierare för varje text block... Hmmm
-	var listItems = document.querySelectorAll('.ToDoTasks input[type=text]');
+	var listItems = document.getElementById('edit_' + itemNumber);
 	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
 	
-	for (var i = 0; i < listItems.length; i++){
+	if (listItems.style.display === "none") {
+		listItems.style.display = "";
+	} else if (listItems.style.display === "") {
+		listItems.style.display = "none";
+	}
+	/*for (var i = 0; i < listItems.length; i++){
+
 		if (listItems[i].style.display === "none") {
 			listItems[i].style.display = ""
 		} else {
 			listItems[i].style.display = "none";
-		}}
+		}}*/
 	for (var a = 0; a < listItemCheckbox.length; a++) {			
 		if (listItemCheckbox[a].checked === true) {			
 			listItemCheckbox[a].checked = false;
 			} 
 		}
-	}
+	
+}
+
 	
 
 
