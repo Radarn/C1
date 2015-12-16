@@ -19,10 +19,9 @@ function taskManager() {
 
 		addTask();
 
-	} /*else if(this.id === "editButton" && isBoxChecked === true) {
-		isEditButtonPressed = true;
-		editMode()
-	 }*/else if(this.id === "doneButton" && isBoxChecked === true) {
+	}  else if(this.id === "editButton" && isBoxChecked === true) {
+		editMode();
+	 } else if(this.id === "doneButton" && isBoxChecked === true) {
 		doneTasks();
 	} else if(this.id === "removeButton" && isBoxChecked === true) {
 		removeTask();
@@ -39,7 +38,6 @@ function checkboxStatus() {
 
 	if (this.checked === true) {
 		itemText.className = "checked";
-		editButton.addEventListener("click", editMode(itemNumber));
 		return isBoxChecked = true
 
 	} else if(this.checked === false) {
@@ -88,12 +86,21 @@ function removeTask() {
    }
 }
 
-function editMode(itemNumber) {
+function editMode() {
+	
+	var listItems = document.querySelectorAll('input');
+	for (var i = 0; i < listItems.length; i++ ) {
+       if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+             var x = listItems[i].parentElement.getElementsByClassName('checked');
+			 
+			 var itemNumber = x[0].id.replace("item_", "");
+           }
+       }     
+   }
 	
 	alert(itemNumber)
-	// Fundersam på om for loop är det rätta sättet här....
-	// Måste på något sätt lösa så att inte alla inputs öppnas och stängs..
-	// På något sätt skapa en identifierare för varje text block... Hmmm
+	
 	var listItems = document.getElementById('edit_' + itemNumber);
 	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
 	
@@ -102,13 +109,7 @@ function editMode(itemNumber) {
 	} else if (listItems.style.display === "") {
 		listItems.style.display = "none";
 	}
-	/*for (var i = 0; i < listItems.length; i++){
 
-		if (listItems[i].style.display === "none") {
-			listItems[i].style.display = ""
-		} else {
-			listItems[i].style.display = "none";
-		}}*/
 	for (var a = 0; a < listItemCheckbox.length; a++) {			
 		if (listItemCheckbox[a].checked === true) {			
 			listItemCheckbox[a].checked = false;
