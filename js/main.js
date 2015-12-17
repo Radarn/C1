@@ -96,19 +96,21 @@ function editMode() {
            }
    		}
     }
-	var listItems = document.getElementById('edit_' + itemNumber);
-	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
-	var label = document.getElementById("item_" + itemNumber);
-	
-	if (listItems.style.display === "none") {
-		listItems.value = label.innerHTML;
-		listItems.style.display = "";
+    for (var a = 1; a <= itemNumber; a++) {
+		var listItems = document.getElementById('edit_' + a);
+		
+		var label = document.getElementById("item_" + a);
+		
+		if (listItems.style.display === "none") {
+			listItems.value = label.innerHTML;
+			listItems.style.display = "";
 
-	} else if (listItems.style.display === "") {
-		label.innerHTML = listItems.value;
-		listItems.style.display = "none";
-	}
-
+		} else if (listItems.style.display === "") {
+			label.innerHTML = listItems.value;
+			listItems.style.display = "none";
+		}
+}
+var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
 	for (var a = 0; a < listItemCheckbox.length; a++) {			
 		if (listItemCheckbox[a].checked === true) {			
 			listItemCheckbox[a].checked = false;
