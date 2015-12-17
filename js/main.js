@@ -1,11 +1,9 @@
 //1. Get Buttons and Input
 var buttons = document.querySelectorAll("button");
-var taskName = document.querySelector(".AddTask input");
+/*var taskName = document.querySelector(".AddTask input");*/
 var totalItems = 0;
-var isBoxChecked;
 var todoList = document.querySelector(".ToDoTasks ul");
 var completedList = document.querySelector(".FinishedTasks ul");
-var editButton = document.getElementById("editButton");
 
 
 
@@ -136,8 +134,8 @@ function finishTask() {
 function doneTasks() {
  var listItems = document.querySelectorAll('input');
   var textClosed = document.querySelectorAll(".ToDoTasks input[type=text]")
-  for (var b = 0; b < textClosed.length; b++) {
-  for (var i = 0; i < listItems.length; i++ ) {
+  for (var i = 0; i < listItems.length; i++ )
+  for (var b = 0; b < textClosed.length; b++) { {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
            	if(textClosed[b].style.display === "none"){
