@@ -86,26 +86,26 @@ function removeTask() {
 }
 
 function editMode() {
+
 	var listItems = document.querySelectorAll('input');
+
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
-             var x = listItems[i].parentElement.getElementsByClassName('checked');
-			 var itemNumber = x[0].id.replace("item_", "");
+            	var x = listItems[i].parentElement.getElementsByClassName('checked');
+				var itemNumber = x[0].id.replace("item_", "");
 			 
            }
-       }     
-   }
-
+   		}
+    }
 	var listItems = document.getElementById('edit_' + itemNumber);
 	var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
 	var label = document.getElementById("item_" + itemNumber);
-
-
 	
 	if (listItems.style.display === "none") {
 		listItems.value = label.innerHTML;
 		listItems.style.display = "";
+
 	} else if (listItems.style.display === "") {
 		label.innerHTML = listItems.value;
 		listItems.style.display = "none";
@@ -114,9 +114,8 @@ function editMode() {
 	for (var a = 0; a < listItemCheckbox.length; a++) {			
 		if (listItemCheckbox[a].checked === true) {			
 			listItemCheckbox[a].checked = false;
-			} 
-		}
-	
+		} 
+	}	
 }
 
 	
@@ -135,13 +134,18 @@ function finishTask() {
 
  
 function doneTasks() {
-  var listItems = document.querySelectorAll('input');
-   for (var i = 0; i < listItems.length; i++ ) {
-       if (listItems[i].type === 'checkbox') {
-           if (listItems[i].checked === true) {
-               completedList.appendChild((listItems[i].parentElement));
-               listItems[i].checked = false;
-           }
-       }     
-   }
+	var listItems = document.querySelectorAll('input');
+	var textClosed = document.querySelectorAll("input[type=text]")
+	for (var b = 0; b < textClosed.length; b++) {
+		for (var i = 0; i < listItems.length; i++ ) {
+    		if (listItems[i].type === 'checkbox') {
+        		if (listItems[i].checked === true) {
+        			if(textClosed[b].style.display === "none"){
+            			completedList.appendChild((listItems[i].parentElement));
+            			listItems[i].checked = false;
+               		}
+           		}
+       		}     
+    	}
+   	}
 }
