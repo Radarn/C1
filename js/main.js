@@ -1,6 +1,6 @@
 //1. Get Buttons and Input
 var buttons = document.querySelectorAll("button");
-/*var taskName = document.querySelector(".AddTask input");*/
+var taskName = document.querySelector(".AddTask input");
 var totalItems = 0;
 var todoList = document.querySelector(".ToDoTasks ul");
 var completedList = document.querySelector(".FinishedTasks ul");
