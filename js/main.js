@@ -135,7 +135,7 @@ function finishTask() {
  
 function doneTasks() {
  var listItems = document.querySelectorAll('input');
-  var textClosed = document.querySelectorAll("input[type=text]")
+  var textClosed = document.querySelectorAll(".ToDoTasks input[type=text]")
   for (var b = 0; b < textClosed.length; b++) {
   for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
