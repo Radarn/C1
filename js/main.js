@@ -36,11 +36,8 @@ function checkboxStatus() {
 
 	if (this.checked === true) {
 		itemText.className = "checked";	
-
-	} else if(this.checked === false) {
-		itemText.className = "unchecked";
-		
-	}
+	} else if (this.checked === false)
+		itemText.classList.remove("checked");
 }
 		
 
@@ -60,6 +57,7 @@ function addTask() {
 	checkbox.id = "cb_" + totalItems;
 	label.id = "item_" + totalItems;
 	textField.id = "edit_" + totalItems;
+	textField.className = "closed";
 
 	textField.style.display = "none";
 
@@ -96,24 +94,31 @@ function editMode() {
            }
    		}
     }
+   
     for (var a = 1; a <= itemNumber; a++) {
+    	var listItemCheckbox = document.getElementById("cb_" + a);
 		var listItems = document.getElementById('edit_' + a);
 		
 		var label = document.getElementById("item_" + a);
 		
-		if (listItems.style.display === "none") {
+		if (listItems.style.display === "none" && listItemCheckbox.checked === true) {
 			listItems.value = label.innerHTML;
 			listItems.style.display = "";
+			label.classList.remove("checked");
+			listItems.classList.remove("closed");
 
-		} else if (listItems.style.display === "") {
+		} else if (listItems.style.display === "" && listItemCheckbox.checked === true) {
 			label.innerHTML = listItems.value;
 			listItems.style.display = "none";
+			label.classList.remove("checked");
+			listItems.classList.add("closed")
 		}
-}
-var listItemCheckbox = document.querySelectorAll("input[type=checkbox]");
-	for (var a = 0; a < listItemCheckbox.length; a++) {			
-		if (listItemCheckbox[a].checked === true) {			
-			listItemCheckbox[a].checked = false;
+}	
+	var listItemCheckboxFalse = document.querySelectorAll("input[type=checkbox");
+	for (var a = 0; a < listItemCheckboxFalse.length; a++) {			
+		if (listItemCheckboxFalse[a].checked === true) {			
+			listItemCheckboxFalse[a].checked = false;
+			
 		} 
 	}	
 }
@@ -134,18 +139,19 @@ function finishTask() {
 
  
 function doneTasks() {
+	// Försöker hitta lösning så att det inte går att skicka iväg ett element som befinner sig i editMode
+	//Just nu fungerar det endast med första elementet.. Måste hitta unik identifier eller liknande.
  var listItems = document.querySelectorAll('input');
-  var textClosed = document.querySelectorAll(".ToDoTasks input[type=text]")
-  for (var i = 0; i < listItems.length; i++ )
-  for (var b = 0; b < textClosed.length; b++) { {
+ var textOpen = document.querySelectorAll(".ToDoTasks input[type=text]");
+	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
-           	if(textClosed[b].style.display === "none"){
-               completedList.appendChild((listItems[i].parentElement));
-               listItems[i].checked = false;
-               }
+            	var x = listItems[i].parentElement.getElementsByClassName('closed');
+				var itemNumber = x[0].id.replace("item_", "");
+				completedList.appendChild((listItems[i].parentElement));
+				listItems[i].checked = false;
+			 
            }
-       }     
+   		}
     }
-   }
 }
