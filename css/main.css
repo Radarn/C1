@@ -19,6 +19,36 @@ li {
 	left: 2px;
 }
 
+.AddTask input {
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 1.3em;
+}
+
+.AddTask input:focus {
+	border-color: #66AFE9;
+	outline: 0px none;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(102, 175, 233, 0.6);
+}
+
+.ToDoTasks input {
+	border: 1px solid #CCC;
+	border-radius: 4px;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.ToDoTasks input:focus {
+	border-color: #66AFE9;
+	outline: 0px none;
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(102, 175, 233, 0.6);
+}
+
 label {
 	display: inline-block;
 	font-size: 1.2em;
@@ -33,18 +63,16 @@ label {
 	display: inline-block;
 }
 
+
+
 .checked {
 		/*font-style: italic;*/
+		
 		color: slategrey;
 		font-weight: 2000;
 		font-size: 1.35em;
 }
 
-.unchecked {
-		color: #333;
-		text-decoration: none;
-		font-style: normal;
-}
 
 input[type="text"] {
 	border-radius: 5px;
