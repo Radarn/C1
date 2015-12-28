@@ -94,7 +94,7 @@ function editMode() {
            }
    		}
     }
-   
+   // Blir inte dynamiskt eftersom att det blir fel id om man removar ett item... Kan inte hitta en lösning..
     for (var a = 1; a <= itemNumber; a++) {
     	var listItemCheckbox = document.getElementById("cb_" + a);
 		var listItems = document.getElementById('edit_' + a);
