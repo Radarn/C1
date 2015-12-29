@@ -53,13 +53,11 @@ function addTask() {
 	checkbox.type = "checkbox";
 
 	checkbox.addEventListener("click", checkboxStatus);
-	label.addEventListener("dblclick", editMode);
 
 	checkbox.id = "cb_" + totalItems;
 	label.id = "item_" + totalItems;
 	textField.id = "edit_" + totalItems;
 	textField.className = "closed";
-	label.className = "closed";
 
 	textField.style.display = "none";
 
@@ -84,28 +82,8 @@ function removeTask() {
 }
 
 function editMode() {
-	alert("hej")
-	var id = this.id.replace("item_", "");
-	var label = document.getElementById("item_" + id);
-	var editText = document.getElementById("edit_" + id);
-	var checkbox = document.getElementById("cb_" + id);
 
-	if (editText.style.display === "none") {
-		editText.value = label.innerHTML;
-		editText.style.display = "";
-		checkbox.style.display = "none";
-	} else {
-		label.innerHTML = editText.value;
-		editText.style.display = "none";
-		checkbox.style.display = "";
-	}
-
-	
-}
-
-
-
-	/*var listItems = document.querySelectorAll('input');
+	var listItems = document.querySelectorAll('input');
 
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
@@ -142,8 +120,8 @@ function editMode() {
 			listItemCheckboxFalse[a].checked = false;
 			
 		} 
-	}	*/
-
+	}	
+}
 
 	
 
@@ -161,11 +139,15 @@ function finishTask() {
 
  
 function doneTasks() {
+	// Försöker hitta lösning så att det inte går att skicka iväg ett element som befinner sig i editMode
+	//Just nu fungerar det endast med första elementet.. Måste hitta unik identifier eller liknande.
  var listItems = document.querySelectorAll('input');
  var textOpen = document.querySelectorAll(".ToDoTasks input[type=text]");
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
+            	var x = listItems[i].parentElement.getElementsByClassName('closed');
+				var itemNumber = x[0].id.replace("item_", "");
 				completedList.appendChild((listItems[i].parentElement));
 				listItems[i].checked = false;
 			 
