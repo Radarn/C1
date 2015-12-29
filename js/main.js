@@ -42,13 +42,13 @@ function checkboxStatus() {
 		
 
 function addTask() {
+
 	totalItems++;
 	
 	var li = document.createElement("li");
 	var label = document.createElement("label");
 	var checkbox = document.createElement("input");
 	var textField = document.createElement("input");
-
 
 	textField.type = "text";
 	checkbox.type = "checkbox";
@@ -83,7 +83,6 @@ function removeTask() {
 }
 
 function editMode() {
-	
 
 	var listItems = document.querySelectorAll('input');
 
@@ -99,8 +98,7 @@ function editMode() {
    // Blir inte dynamiskt eftersom att det blir fel id om man removar ett item... Kan inte hitta en lösning..
     for (var a = 1; a <= itemNumber; a++) {
     	var listItemCheckbox = document.getElementById("cb_" + a);
-		var listItems = document.getElementById('edit_' + a);
-		
+		var listItems = document.getElementById('edit_' + a);		
 		var label = document.getElementById("item_" + a);
 		
 		if (listItems.style.display === "none" && listItemCheckbox.checked === true) {
@@ -116,7 +114,7 @@ function editMode() {
 			listItems.classList.add("closed")
 		}
 }	
-	var listItemCheckboxFalse = document.querySelectorAll("input[type=checkbox");
+	var listItemCheckboxFalse = document.querySelectorAll("input[type=checkbox]");
 	for (var a = 0; a < listItemCheckboxFalse.length; a++) {			
 		if (listItemCheckboxFalse[a].checked === true) {			
 			listItemCheckboxFalse[a].checked = false;
@@ -124,6 +122,7 @@ function editMode() {
 		} 
 	}	
 }
+
 	
 
 
@@ -140,16 +139,19 @@ function finishTask() {
 
  
 function doneTasks() {
+	// Försöker hitta lösning så att det inte går att skicka iväg ett element som befinner sig i editMode
+	//Just nu fungerar det endast med första elementet.. Måste hitta unik identifier eller liknande.
  var listItems = document.querySelectorAll('input');
  var textOpen = document.querySelectorAll(".ToDoTasks input[type=text]");
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
-           		var x = listItems[i].parentElement.getElementsByClassName('checked');
+            	var x = listItems[i].parentElement.getElementsByClassName('closed');
 				var itemNumber = x[0].id.replace("item_", "");
 				completedList.appendChild((listItems[i].parentElement));
 				listItems[i].checked = false;
-			 
+
+
            }
    		}
     }
