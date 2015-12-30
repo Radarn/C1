@@ -39,6 +39,42 @@ function checkboxStatus() {
 	} else if (this.checked === false)
 		itemText.classList.remove("checked");
 }
+
+var getItemsCount = function(){
+	var ul = document.getElementById('ToDoTasks');
+	var items = ul.querySelectorAll('li');
+	if(items){
+	var count = items.length;
+	return count;
+	} else {
+		return;
+	}
+
+
+}
+
+var clearInput = function(){
+	var input = document.getElementById('task');
+	input.value = "";
+}
+
+/*var addTodo = function(){
+
+	var id = getItemsCount();
+
+	var task = document.getElementById('task');
+	var ul = document.getElementById('todos');
+	var todoItem = document.createElement('li');
+	todoItem.setAttribute('id','myId' + id);
+		
+	//Förhindra script
+	todoItem.innerHTML = preventScripts(task.value);
+	
+	ul.appendChild(todoItem);
+	
+	createTodo(todoItem, id);
+
+}*/
 		
 
 function addTask() {
@@ -68,6 +104,8 @@ function addTask() {
     li.appendChild(checkbox);
     todoList.appendChild(li);
 
+    clearInput();
+
     return todoList;
 }
 
@@ -84,6 +122,39 @@ function removeTask() {
 
 function editMode() {
 
+	/*var id = getItemsCount();
+	var listItem = document.querySelectorAll(".ToDoTasks input");
+	for (var i = 0; i < listItem.length; i++) {
+		var listItemEdit = document.getElementById("edit_" + id);
+		var listItemsOkay = document.getElementById("cb_" + id);
+		if (listItem[i].type === "checkbox") {
+		if (listItem[i].checked === true) {
+			listItemEdit.style.display = "";
+		} else {
+			listItemEdit.style.display = "none";
+		}
+	}
+}
+}*/
+	/*var listItems = document.querySelectorAll('.ToDoTasks input');
+	var listItems2 = document.querySelectorAll('.ToDoTasks input[type=text]');
+
+	for (var i = 0; i < listItems.length; i++) {
+		 if (listItems[i].type === 'checkbox') {
+           if (listItems[i].checked === true) {
+           	for (var a = 0; a < listItems2.length; a++) {
+           		if (listItems2[a].className === "closed" && listItems[i].checked === true) {
+           			listItems2[a].style.display="";
+           			listItems2[a].classList.remove("closed");
+           		} else if (listItems2[a].style.display === "") {
+           			listItems2[a].classList.add("closed");
+           			listItems2[a].style.display = "none";
+           		}
+           	 }
+           }	
+	} }
+}*/
+	
 	var listItems = document.querySelectorAll('input');
 
 	for (var i = 0; i < listItems.length; i++ ) {
@@ -95,6 +166,7 @@ function editMode() {
            }
    		}
     }
+
    // Blir inte dynamiskt eftersom att det blir fel id om man removar ett item... Kan inte hitta en lösning..
     for (var a = 1; a <= itemNumber; a++) {
     	var listItemCheckbox = document.getElementById("cb_" + a);
@@ -142,10 +214,12 @@ function doneTasks() {
 	// Försöker hitta lösning så att det inte går att skicka iväg ett element som befinner sig i editMode
 	//Just nu fungerar det endast med första elementet.. Måste hitta unik identifier eller liknande.
  var listItems = document.querySelectorAll('input');
- var textOpen = document.querySelectorAll(".ToDoTasks input[type=text]");
+ 
+
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
            if (listItems[i].checked === true) {
+      
             	var x = listItems[i].parentElement.getElementsByClassName('closed');
 				var itemNumber = x[0].id.replace("item_", "");
 				completedList.appendChild((listItems[i].parentElement));
@@ -156,4 +230,5 @@ function doneTasks() {
    		}
     }
 }
+
 
