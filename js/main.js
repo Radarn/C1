@@ -171,7 +171,7 @@ function editMode() {
    // Blir inte dynamiskt eftersom att det blir fel id om man removar ett item... Kan inte hitta en lösning..
     for (var a = 1; a <= itemNumber; a++) {
     	var listItemCheckbox = document.getElementById("cb_" + a);
-		var listItems2 = document.getElementById('edit_' + a);
+		var listItems = document.getElementById('edit_' + a);		
 		var label = document.getElementById("item_" + a);
 		
 		if (listItems.style.display === "none" && listItemCheckbox.checked === true) {
@@ -228,6 +228,7 @@ function doneTasks() {
 				}
 				completedList.appendChild((listItems[i].parentElement));
 				listItems[i].checked = false;
+
 
            }
    		}
