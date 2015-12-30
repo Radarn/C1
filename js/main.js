@@ -1,4 +1,5 @@
-//1. Get Buttons and Input
+//My first program ever written so please be kind!
+
 var buttons = document.querySelectorAll("button");
 var taskName = document.querySelector(".AddTask input");
 var totalItems = 0;
@@ -170,7 +171,7 @@ function editMode() {
    // Blir inte dynamiskt eftersom att det blir fel id om man removar ett item... Kan inte hitta en lösning..
     for (var a = 1; a <= itemNumber; a++) {
     	var listItemCheckbox = document.getElementById("cb_" + a);
-		var listItems = document.getElementById('edit_' + a);		
+		var listItems2 = document.getElementById('edit_' + a);
 		var label = document.getElementById("item_" + a);
 		
 		if (listItems.style.display === "none" && listItemCheckbox.checked === true) {
@@ -214,7 +215,7 @@ function doneTasks() {
 	// Försöker hitta lösning så att det inte går att skicka iväg ett element som befinner sig i editMode
 	//Just nu fungerar det endast med första elementet.. Måste hitta unik identifier eller liknande.
  var listItems = document.querySelectorAll('input');
- 
+ var label = document.querySelectorAll(".ToDoTasks label");
 
 	for (var i = 0; i < listItems.length; i++ ) {
        if (listItems[i].type === 'checkbox') {
@@ -222,9 +223,11 @@ function doneTasks() {
       
             	var x = listItems[i].parentElement.getElementsByClassName('closed');
 				var itemNumber = x[0].id.replace("item_", "");
+				for (var a = 0; a < label.length; a++) {
+					label[a].classList.remove("checked");
+				}
 				completedList.appendChild((listItems[i].parentElement));
 				listItems[i].checked = false;
-
 
            }
    		}
